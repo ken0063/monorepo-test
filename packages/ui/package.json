@@ -6,15 +6,18 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"**/*.ts*\"",
-    "generate:component": "turbo gen react-component"
+    "generate:component": "turbo gen react-component",
+    "test": "jest",
+    "type-check": "tsc --pretty --noEmit"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
+    "jest": "^29.6.2",
     "react": "^17.0.2",
     "tsconfig": "*",
-    "typescript": "^4.5.2"
+    "typescript": "5.1.6"
   }
 }

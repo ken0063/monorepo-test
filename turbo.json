@@ -1,15 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env.*local", "**/.env"],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "^db:generate"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
+    "test": {
+      "inputs": ["src/**/*.tsx", "src/**/*.ts"]
+    },
     "dev": {
+      "dependsOn": ["^db:generate"],
       "cache": false,
       "persistent": true
-    }
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    },
+    "start": { "dependsOn": ["^db:generate"] },
+    "topo": {
+      "dependsOn": ["^topo"]
+    },
+    "type-check": { "dependsOn": ["topo"] }
   }
 }
